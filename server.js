@@ -23,6 +23,9 @@ const table = 'myGallery'
 // Log
 const logError = (err) => { if (err) return console.log(err) }
 
+// Token config
+key = 'rahasia'
+
 // Express config
 const app = express()
 app.use(bodyParser.json())
@@ -85,7 +88,7 @@ app.post('/api/login', (req, res) => {
 
         var loggedIn = passwordHash.verify(password, result.password)
         if (loggedIn) {
-            var token = jwt.sign(result, 'rahasia', { expiresIn: 5 * 60 }) // dalam detik
+            var token = jwt.sign(result, key, { expiresIn: 5 * 60 }) // dalam detik
             res.json({ message: 'OK', token })
         }
         else res.json({ message: 'Wrong password ' })
@@ -103,7 +106,7 @@ app.post('/api/upload', multipartMiddleware, (req, res) => {
     //     maxCapacity = maxCapacity * 1024
     // }
 
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             fs.unlink(tmp_path);
             res.json({ message: 'Failed to authenticate token.' });
@@ -139,7 +142,7 @@ app.post('/api/upload', multipartMiddleware, (req, res) => {
 app.post('/api/download', (req, res) => {
     var token = req.body.token
     var filename = req.body.filename
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
@@ -152,7 +155,7 @@ app.post('/api/download', (req, res) => {
 app.post('/api/delete', (req, res) => {
     var token = req.body.token
     var filename = req.body.filename
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
@@ -169,7 +172,7 @@ app.post('/api/rename', (req, res) => {
     var token = req.body.token
     var oldName = req.body.oldName
     var newName = req.body.newName
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
@@ -185,7 +188,7 @@ app.post('/api/rename', (req, res) => {
 app.post('/api/list', (req, res) => {
     var token = req.body.token
     var dir = req.body.dir
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
@@ -199,7 +202,7 @@ app.post('/api/list', (req, res) => {
 
 app.post('/api/mkdir', (req, res) => {
     var token = req.body.token
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
@@ -218,7 +221,7 @@ app.post('/api/mkdir', (req, res) => {
 
 app.post('/api/rmdir', (req, res) => {
     var token = req.body.token
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
@@ -238,7 +241,7 @@ app.post('/api/rmdir', (req, res) => {
 app.post('/api/listdir', (req, res) => {
     var token = req.body.token
     var dir = req.body.dir
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
@@ -260,7 +263,7 @@ app.post('/api/movefile', (req, res) => {
     var token = req.body.token
     var oldPath = req.body.oldPath
     var newPath = req.body.newPath
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
@@ -277,7 +280,7 @@ app.post('/api/movedir', (req, res) => {
     var token = req.body.token
     var oldPath = req.body.oldPath
     var newPath = req.body.newPath
-    jwt.verify(token, 'rahasia', function (err, decoded) {
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
             res.json({ message: 'Failed to authenticate token.' });
         } else {
