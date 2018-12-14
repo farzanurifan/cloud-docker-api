@@ -1,0 +1,33 @@
+{
+  "name": "cloud-docker-api",
+  "version": "1.0.0",
+  "description": "cloud-docker-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farzanurifan/cloud-docker-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farzanurifan/cloud-docker-api/issues"
+  },
+  "homepage": "https://github.com/farzanurifan/cloud-docker-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-multiparty": "^2.2.0",
+    "express": "^4.16.4",
+    "fs-extra": "^7.0.1",
+    "fs-path": "0.0.24",
+    "get-folder-size": "^2.0.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^3.1.10",
+    "nodemon": "^1.18.8",
+    "password-hash": "^1.2.2",
+    "request": "^2.88.0"
+  }
+}
