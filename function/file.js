@@ -74,7 +74,7 @@ module.exports = {
         })
     },
     list: (req, res) => {
-        var token = req.body.token
+        var token = req.body.token      
         var dir = req.body.dir
 
         tf.verify(token, key, res, decoded => {
