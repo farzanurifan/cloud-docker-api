@@ -37,12 +37,12 @@ module.exports = {
             })
 
         },
-        errFunc)
+            errFunc)
     },
     download: (req, res) => {
         var token = req.body.token
         var filename = req.body.filename
-     
+
         tf.verify(token, key, res, decoded => {
             var id = decoded._id
             res.download(`./data/${id}/${filename}`)
@@ -63,7 +63,7 @@ module.exports = {
     rename: (req, res) => {
         var token = req.body.token
         var oldName = req.body.oldName
-        var newName = req.body.newName        
+        var newName = req.body.newName
 
         tf.verify(token, key, res, decoded => {
             var id = decoded._id
@@ -75,7 +75,7 @@ module.exports = {
     },
     list: (req, res) => {
         var token = req.body.token
-        var dir = req.body.dir        
+        var dir = req.body.dir
 
         tf.verify(token, key, res, decoded => {
             var id = decoded._id
@@ -87,7 +87,7 @@ module.exports = {
     movefile: (req, res) => {
         var token = req.body.token
         var oldPath = req.body.oldPath
-        var newPath = req.body.newPath        
+        var newPath = req.body.newPath
 
         tf.verify(token, key, res, decoded => {
             var id = decoded._id

@@ -19,6 +19,7 @@ module.exports = {
     login: (req, res) => {
         var email = req.body.email
         var password = req.body.password
+        console.log('kaka')
 
         db.collection(table).find({ email }).toArray((err, results) => {
             result = results[0]
@@ -40,6 +41,7 @@ module.exports = {
         db.collection(table).save(data, (err, result) => {
             if (!err) {
                 dir = `./data/${result.ops[0]._id}`
+                console.log(dir)
                 fs.mkdirSync(dir)
                 res.json({ message: 'User created' })
             }
